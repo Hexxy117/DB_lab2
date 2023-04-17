@@ -1,0 +1,5 @@
+/*place your personal CSS rules here*/
+.navbar-blue {
+    background-color: #0f4b5b !important;
+    --bs-bg-opacity: 1;
+}

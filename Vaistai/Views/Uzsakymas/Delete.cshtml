@@ -1,0 +1,62 @@
+﻿@model Vaistai.Models.UzsakymasCE
+
+@* this will also be used as page title in main layout *@
+@{ ViewData["title"] = "Sutarties šalinimas (F2)"; }
+
+@* content header *@
+<div class="main-content-header">
+	<span class="title">@ViewData["title"]</span>
+	<span class="actions">
+		<a 
+			href="@Url.Action("Index")" 
+			class="btn btn-outline-primary btn-sm"
+		>
+			<i class="fa-solid fa-angles-left"></i> Atgal į sarašą
+		</a>
+	</span>
+</div>
+
+@* content itself *@
+<div class="main-content-ced">
+@using( Html.BeginForm(FormMethod.Post, new { @class="entity-d" }) )
+{
+	@Html.AntiForgeryToken()
+
+	<fieldset>
+		<legend class="confirm-msg">Ar tikrai norite šalinti šį užsakymą su atitinkamais vaistais?</legend>
+
+		<dl>
+			<dt>@Html.DisplayNameFor(m => m.Uzsakymas.Id)</dt>
+			<dd>@Html.DisplayFor(m => m.Uzsakymas.Id)</dd>
+
+			<dt>@Html.DisplayNameFor(m => m.Uzsakymas.Data)</dt>
+			<dd>@String.Format("{0:yyyy-MM-dd}", Model.Uzsakymas.Data)</dd>
+
+			<dt>@Html.DisplayNameFor(m => m.Uzsakymas.FkUzsakovas)</dt>
+			<dd>@Html.DisplayFor(m => m.Uzsakymas.FkUzsakovas)</dd>			
+		</dl>
+
+			<div class="buttons">
+				<button
+					formaction="@Url.Action("DeleteConfirm", new {id = Model.Uzsakymas.Id})"
+					formaction="@Url.Action("DeleteConfirm", new {id = Model.Uzsakymas.Id})"
+					class="btn btn-danger"
+					style="white-space: nowrap;"
+				><i class="fa-solid fa-trash"></i> Šalinti</button>
+			</div>		
+	</fieldset>
+}
+</div>
+
+@* content footer *@
+<div class="main-content-footer">
+	<span class="title"></span>
+	<span class="actions">
+		<a 
+			href="@Url.Action("Index")" 
+			class="btn btn-outline-primary btn-sm"
+		>
+			<i class="fa-solid fa-angles-left"></i> Atgal į sarašą
+		</a>
+	</span>
+</div>
